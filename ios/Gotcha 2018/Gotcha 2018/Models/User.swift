@@ -10,14 +10,12 @@ import Foundation
 
 class User: Codable {
     
-    var id: String? = nil
-    var name: String? = nil
-    var target: String? = nil
+    var id: String
+    var name: String
     
-    init(id: String?, name: String?, target: String?) {
+    init(id: String, name: String) {
         self.id = id
         self.name = name
-        self.target = target
     }
     
     private static var _current: User?
@@ -39,5 +37,13 @@ class User: Codable {
         }
         
         _current = user
+    }
+    
+    static func verify(email: String) -> Bool {
+        return true
+    }
+    
+    static func getId(email: String) -> String {
+        return email.components(separatedBy: "@")[0]
     }
 }

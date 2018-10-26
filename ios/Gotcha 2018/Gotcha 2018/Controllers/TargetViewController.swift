@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  TargetViewController.swift
 //  Gotcha 2018
 //
 //  Created by Ben Botvinick on 10/25/18.
@@ -8,11 +8,14 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class TargetViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        GameService.getTargetId(userId: User.current.id) { target in
+            print(target!)
+        }
     }
 
 

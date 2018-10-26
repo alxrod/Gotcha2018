@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().delegate = self
         
         configureInitialRootViewController(for: window)
+        
         return true
     }
 
@@ -47,17 +48,12 @@ extension AppDelegate {
 
 extension AppDelegate: GIDSignInDelegate {
     @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
-        -> Bool {
-            return GIDSignIn.sharedInstance().handle(url,
-                                                     sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                                                     annotation: [:])
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+            return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url,
-                                                 sourceApplication: sourceApplication,
-                                                 annotation: annotation)
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication,  annotation: annotation)
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -67,8 +63,7 @@ extension AppDelegate: GIDSignInDelegate {
         }
         
         guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
         Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
             if let error = error {
@@ -76,7 +71,19 @@ extension AppDelegate: GIDSignInDelegate {
                 return
             }
             
-            print(authResult?.user.email as Any)
+            let firUser = authResult?.user
+            
+            let currentUser = User(id: User.getId(email: (firUser?.email)!), name: (firUser?.displayName)!)
+            
+            User.setCurrent(currentUser, writeToUserDefaults: true)
+            
+            // Access the storyboard and fetch an instance of the view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+            let viewController: TargetViewController = storyboard.instantiateViewController(withIdentifier: "TargetViewController") as! TargetViewController;
+            
+            // Then push that view controller onto the navigation stack
+            let rootViewController = self.window!.rootViewController as! UINavigationController;
+            rootViewController.pushViewController(viewController, animated: true);
         }
     }
     

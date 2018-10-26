@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		988CDD841C5F6DC3857BE99D /* Pods_Gotcha_2018.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DE32E15CAF75CC61CDBA94 /* Pods_Gotcha_2018.framework */; };
+		F71F28902182931E004B60A8 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71F288F2182931E004B60A8 /* GameService.swift */; };
 		F7A539E92182553A0088F7A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A539E82182553A0088F7A5 /* AppDelegate.swift */; };
-		F7A539EB2182553A0088F7A5 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A539EA2182553A0088F7A5 /* FirstViewController.swift */; };
-		F7A539ED2182553A0088F7A5 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A539EC2182553A0088F7A5 /* SecondViewController.swift */; };
+		F7A539EB2182553A0088F7A5 /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A539EA2182553A0088F7A5 /* TargetViewController.swift */; };
 		F7A539F02182553A0088F7A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7A539EE2182553A0088F7A5 /* Main.storyboard */; };
 		F7A539F22182553C0088F7A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A539F12182553C0088F7A5 /* Assets.xcassets */; };
 		F7A539F52182553C0088F7A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7A539F32182553C0088F7A5 /* LaunchScreen.storyboard */; };
@@ -26,10 +26,10 @@
 		4610C44AA3CE1C92850F465C /* Pods-Gotcha 2018.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotcha 2018.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gotcha 2018/Pods-Gotcha 2018.debug.xcconfig"; sourceTree = "<group>"; };
 		88DE32E15CAF75CC61CDBA94 /* Pods_Gotcha_2018.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gotcha_2018.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C8C8F6BC577F247FDB2B7A /* Pods-Gotcha 2018.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotcha 2018.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gotcha 2018/Pods-Gotcha 2018.release.xcconfig"; sourceTree = "<group>"; };
+		F71F288F2182931E004B60A8 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		F7A539E52182553A0088F7A5 /* Gotcha 2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gotcha 2018.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A539E82182553A0088F7A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F7A539EA2182553A0088F7A5 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		F7A539EC2182553A0088F7A5 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		F7A539EA2182553A0088F7A5 /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 		F7A539EF2182553A0088F7A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F7A539F12182553C0088F7A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7A539F42182553C0088F7A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +63,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F71F288E2182930E004B60A8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F71F288F2182931E004B60A8 /* GameService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F7A539DC2182553A0088F7A5 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +92,7 @@
 		F7A539E72182553A0088F7A5 /* Gotcha 2018 */ = {
 			isa = PBXGroup;
 			children = (
+				F71F288E2182930E004B60A8 /* Services */,
 				F7F06D592182612600817941 /* Models */,
 				F7F06D5221825A4100817941 /* Extensions */,
 				F7A539FE218255660088F7A5 /* Storyboards */,
@@ -108,8 +117,7 @@
 		F7A539FD218255550088F7A5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F7A539EA2182553A0088F7A5 /* FirstViewController.swift */,
-				F7A539EC2182553A0088F7A5 /* SecondViewController.swift */,
+				F7A539EA2182553A0088F7A5 /* TargetViewController.swift */,
 				F7F06D5E2182641200817941 /* LoginViewController.swift */,
 			);
 			path = Controllers;
@@ -294,11 +302,11 @@
 			files = (
 				F7F06D5F2182641200817941 /* LoginViewController.swift in Sources */,
 				F7F06D5821825F9800817941 /* Constants.swift in Sources */,
-				F7A539ED2182553A0088F7A5 /* SecondViewController.swift in Sources */,
 				F7F06D5B2182613D00817941 /* User.swift in Sources */,
 				F7A539E92182553A0088F7A5 /* AppDelegate.swift in Sources */,
-				F7A539EB2182553A0088F7A5 /* FirstViewController.swift in Sources */,
+				F7A539EB2182553A0088F7A5 /* TargetViewController.swift in Sources */,
 				F7F06D5421825A7B00817941 /* UIStoryboard+Utility.swift in Sources */,
+				F71F28902182931E004B60A8 /* GameService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
