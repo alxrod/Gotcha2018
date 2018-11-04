@@ -32,7 +32,6 @@ class User: Codable {
         if writeToUserDefaults {
             if let data = try? JSONEncoder().encode(user) {
                 UserDefaults.standard.set(data, forKey: Constants.UserDefaults.currentUser)
-                UserDefaults.standard.set(true, forKey: Constants.UserDefaults.firstTime)
             }
         }
         

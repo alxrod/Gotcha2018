@@ -11,6 +11,6 @@ import Foundation
 struct Constants {
     struct UserDefaults {
         static let currentUser = "currentUser"
-        static let firstTime = "firstTime"
+        static let currentTarget = "currentTarget"
     }
 }

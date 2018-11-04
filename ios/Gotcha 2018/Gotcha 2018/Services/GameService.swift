@@ -10,11 +10,11 @@ import Foundation
 import Firebase
 
 struct GameService {
-    static func getTargetId(userId: String, completion: @escaping (String?) -> Void) {
+    static func getTarget(userId: String, completion: @escaping ([String: String]?) -> Void) {
         let ref = Database.database().reference(withPath: "circle/\(userId)")
         
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let target = snapshot.value as? String else { return completion(nil) }
+            guard let target = snapshot.value as? [String: String] else { return completion(nil) }
             completion(target)
         }) { (error) in
             print(error.localizedDescription)

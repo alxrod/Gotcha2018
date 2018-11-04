@@ -9,15 +9,13 @@
 import UIKit
 
 class TargetViewController: UIViewController {
-
+    @IBOutlet weak var targetLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GameService.getTargetId(userId: User.current.id) { target in
-            print(target!)
-        }
+        self.targetLabel.text = "Alex Rodriguez"
+        
     }
 
-
 }
-

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		988CDD841C5F6DC3857BE99D /* Pods_Gotcha_2018.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DE32E15CAF75CC61CDBA94 /* Pods_Gotcha_2018.framework */; };
 		F71F28902182931E004B60A8 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71F288F2182931E004B60A8 /* GameService.swift */; };
+		F74378182184E91500696DD3 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74378172184E91500696DD3 /* Target.swift */; };
 		F7A539E92182553A0088F7A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A539E82182553A0088F7A5 /* AppDelegate.swift */; };
 		F7A539EB2182553A0088F7A5 /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A539EA2182553A0088F7A5 /* TargetViewController.swift */; };
 		F7A539F02182553A0088F7A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7A539EE2182553A0088F7A5 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		88DE32E15CAF75CC61CDBA94 /* Pods_Gotcha_2018.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gotcha_2018.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C8C8F6BC577F247FDB2B7A /* Pods-Gotcha 2018.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gotcha 2018.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gotcha 2018/Pods-Gotcha 2018.release.xcconfig"; sourceTree = "<group>"; };
 		F71F288F2182931E004B60A8 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
+		F74378172184E91500696DD3 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		F7A539E52182553A0088F7A5 /* Gotcha 2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gotcha 2018.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A539E82182553A0088F7A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7A539EA2182553A0088F7A5 /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				F7F06D5A2182613D00817941 /* User.swift */,
+				F74378172184E91500696DD3 /* Target.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				F7A539E92182553A0088F7A5 /* AppDelegate.swift in Sources */,
 				F7A539EB2182553A0088F7A5 /* TargetViewController.swift in Sources */,
 				F7F06D5421825A7B00817941 /* UIStoryboard+Utility.swift in Sources */,
+				F74378182184E91500696DD3 /* Target.swift in Sources */,
 				F71F28902182931E004B60A8 /* GameService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
