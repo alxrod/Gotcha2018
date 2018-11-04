@@ -9,8 +9,9 @@ from operator import attrgetter
 def index(request):
 	return HttpResponse("Hello, world")
 
-def getPlayer(request, player_id):
-	return HttpResponse(Player.objects.get(id=player_id).jsonify())
+def getPlayer(request, player_separated_email):
+	player_email = player_separated_email+"@milton.edu"
+	return HttpResponse(Player.objects.get(email=player_email).jsonify())
 
 def getTargetRel(request, rel_id):
 	return HttpResponse(TargetRel.objects.get(id=rel_id).jsonify())

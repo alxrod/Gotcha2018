@@ -34,6 +34,7 @@ class Player(models.Model):
 
 	def jsonify(self):
 		return json.dumps({
+				"id": self.id,
 				"email": self.email,
 				"directoryPath": self.directoryPath,
 				"timeTagged": self.timeTagged,
