@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.utils import timezone
-import datetime
 
 from .models import Player, TargetRel
 import json
