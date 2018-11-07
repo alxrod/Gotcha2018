@@ -60,9 +60,9 @@ class TargetRel(models.Model):
 		# This is a simple tag info returner that is going to give me a 2d array 1 hot array
     	# The first array is taggger, postion 1 = class 1 etc
     	# Second array is target
-		breakDown = [[0,0,0,0],[0,0,0,0]]
-		breakDown[0][tagger.hsClass-1] += 1
-		breakDown[1][target.hsClass-1] += 1
+		breakDown = [[0,alrig0,0,0],[0,0,0,0]]
+		breakDown[0][self.tagger.hsClass-1] += 1
+		breakDown[1][self.target.hsClass-1] += 1
 		return breakDown
 
 	def jsonify(self):
