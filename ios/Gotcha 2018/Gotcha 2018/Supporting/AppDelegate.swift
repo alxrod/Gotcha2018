@@ -71,11 +71,24 @@ extension AppDelegate: GIDSignInDelegate {
                 return
             }
             
-            let firUser = authResult?.user
+            guard let firUser = authResult?.user else { return }
+            guard let userEmail = firUser.email else { return }
+            guard let userName = firUser.displayName else { return }
             
-            let currentUser = User(id: User.getId(email: (firUser?.email)!), name: (firUser?.displayName)!)
+            let userId = User.getId(email: userEmail)
+            let currentUser = User(id: userId, name: userName)
             
             User.setCurrent(currentUser, writeToUserDefaults: true)
+            
+            GameService.getTarget(userId: User.current.id) { target in
+                guard let target = target else { return }
+                guard let targetId = target["id"] else { return }
+                guard let targetName = target["name"] else { return }
+                
+                let currentTarget = Target(id: targetId, name: targetName)
+                
+                Target.setCurrent(currentTarget, writeToUserDefaults: true)
+            }
             
             // Access the storyboard and fetch an instance of the view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
