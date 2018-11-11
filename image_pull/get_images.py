@@ -14,5 +14,5 @@ print(cfid , cftok)
 cookies = {'CFID':cfid[1], 'CFTOKEN':cftok[1]}
 user = 'Zankner20'
 password = '4pcsuqi1'
-payload = {'UserLogin':user, 'UserPassword':password}
+payload = {'UserLogin_required':'','UserPassword_required'='','UserLogin':user, 'UserPassword':password}
 response = s.post('https://mymustangs.milton.edu/student/', cookies = cookies, data=payload)
