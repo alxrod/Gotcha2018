@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from django.template import loader
+
 from django.utils import timezone
 import datetime
 
@@ -7,7 +9,9 @@ import json
 from operator import attrgetter
 
 def index(request):
-	return HttpResponse("Hello, world")
+    template = loader.get_template('apiApp/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 def getPlayer(request, player_separated_email):
 	player_email = player_separated_email+"@milton.edu"
