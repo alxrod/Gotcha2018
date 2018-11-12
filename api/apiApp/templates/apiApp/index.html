@@ -1,77 +1,323 @@
 {% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
+
+
     <meta charset="UTF-8">
     <title>Gotcha</title>
-  	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=font1|font2|etc" type="text/css">
+  	<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=font1|font2|etc" type="text/css"> -->
 
     <link rel="stylesheet" type="text/css" href="{% static 'apiApp/normalize.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'apiApp/skeleton.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'apiApp/style.css' + ?v=1.0.50' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'apiApp/style.css' + ?v=1.1.1' %}">
 
-
-  	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+<!-- 
+  	<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet"> -->
   	<link rel="icon" 
       type="image/png" 
       href="{% static 'apiApp/images/favicon.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'apiApp/images/favicon.png' %}" />
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script src="{% static 'apiApp/sly.js' %}"></script>
+    <script src="{% static 'apiApp/index.js' %}"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
   </head>
   <body>
   <div class="header"> 
-  	<img class="targetImg" src="{% static 'apiApp/images/template_directory.png' %}">
+    {% if aliveStatus %}
+  	<img class="targetImg" src="{% static targetDirectory %}">
+    {% else %}
+    <img class="targetImg" src="{% static yourDirectory %}">
+    {% endif %}
   </div>
   <div id="spacer"></div>
-  <h1>Alex Rodriguez</h1>
+  {% if aliveStatus %}
+    {% if win %}
+      <h1 id="testTitle">You Win!</h1>
+    {% else%}
+      <h1 id="testTitle">{{ targetName }} ({{targetClass}})</h1>
+    {%endif%}
+  
+  {% else %}
+  <h1 id="testTitle">You're Out!</h1>
+  {% endif %}
+  <p id="instruction"><i>(Swipe Right to Access Other Widgets)</i></p>
+
 
 
 <!-- leaderboard -->
-  <div class="mainWidget">
-  	<div class="widgetHeader">
-      <h1 class="widgetTitle">Leaderboard</h1>
-  	</div>
-  	<div class="widgetBody">
-      <ul id="leaderboardTable">
-        <li class="leaderboardEntry">
-          <div class="boardName" id="titleBoard">  <h2> Player: </h2> </div>
-          <div class="boardClass" id="titleBoard"> <h2> Class:  </h2> </div>
-          <div class="boardTags" id="titleBoard"> <h2> Tags: </h2> </div>
-        </li>
-        <li class="leaderboardEntry">
-          <div class="boardName">  <h2> Alex Rodriguez </h2> </div>
-          <div class="boardClass"> <h2> II  </h2> </div>
-          <div class="boardTags"> <h2> 10 </h2> </div>
-        </li>
-        <li class="leaderboardEntry">
-          <div class="boardName">  <h2> Alex Rodriguez </h2> </div>
-          <div class="boardClass"> <h2> II  </h2> </div>
-          <div class="boardTags"> <h2> 10 </h2> </div>
-        </li>
-        <li class="leaderboardEntry">
-          <div class="boardName">  <h2> Alex Rodriguez </h2> </div>
-          <div class="boardClass"> <h2> II  </h2> </div>
-          <div class="boardTags"> <h2> 10 </h2> </div>
-        </li>
-        <li class="leaderboardEntry">
-          <div class="boardName">  <h2> Alex Rodriguez </h2> </div>
-          <div class="boardClass"> <h2> II  </h2> </div>
-          <div class="boardTags"> <h2> 10 </h2> </div>
-        </li>
-        <li class="leaderboardEntry">
-          <div class="boardName" id="bottomDiv">  <h2> Alex Rodriguez </h2> </div>
-          <div class="boardClass" id="bottomDiv"> <h2> II  </h2> </div>
-          <div class="boardTags" id="bottomDiv"> <h2> 10 </h2> </div>
-        </li>
-      
-      </ul>
-  	</div>
+  <div id="widgetFrame">
+    <ul class="widgetUl">
+      <li class="widgetLi">
+        <div class="mainWidget">
+        	<div class="widgetHeader">
+            <h1 class="widgetTitle">Leaderboard</h1>
+        	</div>
+        	<div class="widgetBody">
+            <ul id="leaderboardTable">
+              <li class="leaderboardEntry">
+                <div class="boardName" id="titleBoard">  <h2> Player: </h2> </div>
+                <div class="boardClass" id="titleBoard"> <h2> Class:  </h2> </div>
+                <div class="boardTags" id="titleBoard"> <h2> Tags: </h2> </div>
+              </li>
+
+              {% for player in everyone %}
+              <li class="leaderboardEntry">
+                <div class="boardName">  <h2> {{player.name}} </h2> </div>
+                <div class="boardClass"> <h2> {{player.hsClass}}  </h2> </div>
+                <div class="boardTags"> <h2> {{player.numOfTags}} </h2> </div>
+              </li>
+              {%endfor%}
+            
+            </ul>
+        	</div>
+        </div>
+      </li>
+
+
+      <li class="widgetLi">
+        <div class="mainWidget">
+          <div class="widgetHeader">
+            <h1 class="widgetTitle">Tag Map</h1>
+          </div>
+          <div class="widgetBody">
+            <div id="mapDisplay">
+              <!-- Milton: 42.2573851,-71.0709502 -->
+              <img src='https://maps.googleapis.com/maps/api/staticmap?center=42.2573851,-71.0709502&zoom=17{{ markerString }}&size=1000x600&key=AIzaSyDq15a30ElkLqwnFm7TdIbFh1B1lHy0fLg'>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="widgetLi">
+        <div class="mainWidget">
+          <div class="widgetHeader">
+            <h1 class="widgetTitle">Your Statistics</h1>
+          </div>
+          <div class="widgetBody">
+            <div class="rulesBody" style="margin-left: 25px">
+              <b> Current Number of Tags: </b><p style="display:inline">{{yourTags}}</p>
+              <br>
+              <b> Most Recent Tag: </b><p style="display:inline">{{yourRecent}}</p>
+              <div style="text-align: center;">
+                <div id="piechart"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="widgetLi">
+        <div class="mainWidget">
+          <div class="widgetHeader">
+            <h1 class="widgetTitle">Game Statistics</h1>
+          </div>
+          <div class="widgetBody">
+            <div class="rulesBody">
+              <b> Total Tags: </b><p style="display:inline">{{totalTags}}</p>
+              <br>
+              <div style="text-align: center;">
+                <div id="piechart2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+
+      <li class="widgetLi">
+        <div class="mainWidget" style="margin-right: 10vw">
+          <div class="widgetHeader">
+            <h1 class="widgetTitle">Rules</h1>
+          </div>
+          <div class="widgetBody">
+            <div class="rulesBody">
+              <p><b>Gotcha will last from Monday to Friday.</b> The hours are slightly different on a few days, so please note the adjustments below.</p>
+              <ul>
+                <li>Monday: 12:00pm - 3:45pm (due to the Veteran’s Day Flagpole Ceremony).</li>
+                <li>Tuesday: 8:25am to 3:45pm</li>
+                <li>Wednesday: 8:10am to 2:00 (due to Spikeball tournament starting right after 6th)</li>
+                <li>Thursday: 8:25am to 3:45pm</li>
+                <li>Friday: 8:25am to 3:45pm</li>
+              </ul>
+              <br>
+              <p>Below are the rules for Gotcha. You are responsible for knowing and following these rules. Any reported violations will result in an <b>immediate disqualification.</b></p>
+              <ul>
+                <li>No foul play. No shoving, roughhousing, or throwing things. These are people’s children.</li>
+                <li>You must tag out fairly. If you get got, it’s up to you to gotcha yourself out.</li>
+                <li>You cannot show up late/cut class or assembly due to Gotcha. The regular school day is in session.</li>
+                <li>You cannot play in tag free zones.</li>
+              </ul>
+              <b> Places You Can Tag: </b>
+              <ul>
+                <li>All fields and quads except the space between Ware Hall and Cox Library</li>
+                <li>The Stu</li>
+                <li>Straus</li>
+                <li>Warren Hall</li>
+                <li>Wigglesworth Hall</li>
+                <li>Kellner</li>
+                <li>The AMC</li>
+                <li>The ACC</li>
+                <li>The RSG</li>
+              </ul>
+              <b> Places You Can Tag: </b>
+              <ul>
+                <li>All dorms</li>
+                <li>All bathrooms</li>
+                <li>All classes, peer groups, or club meetings</li>
+                <li>All parking lots, streets, and sidewalks (including Chapel Hill Road and street in front of Wolcott/Robbins/Forbes).</li>
+                <li>Ware Hall</li>
+                <li>Cox Library</li>
+                <li>The Quad between Cox Library and Ware Hall</li>
+                <li>Forbes Dining Hall</li>
+                <li>All lower school buildings including the CSG</li>
+                <li>The Bookstore</li>
+                <li>Pritzker</li>
+                <li>Fitness Center, Basketball Courts, and Hockey Rink</li>
+                <li>The Admissions hallway</li>
+                <li>Any person that is touring a prospective student.</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    </ul>
   </div>
 
-  <div class="outButton">
-    <form class="outForm">
-      <input class="outImage" type="image" name="submit" src="{% static 'apiApp/images/tagButton.png' %}"> </input>
-    </form>
-  </div>
+  <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="uc1" value="{{yourBD.c1}}"></input>
+  <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="uc2" value="{{yourBD.c2}}"></input>
+  <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="uc3" value="{{yourBD.c3}}"></input>
+  <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="uc4" value="{{yourBD.c4}}"></input>
+   <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="c1o" value="{{totalBD.c1}}"></input>
+  <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="c2o" value="{{totalBD.c2}}"></input>
+  <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="c3o" value="{{totalBD.c3}}"></input>
+  <input style="visibility: hidden; width:0;height:0;margin:0;padding:0;" id="c4o" value="{{totalBD.c4}}"></input>
+
+  {% if aliveStatus %}
+    {% if win %}
+    {%else%}
+    <div class="outButton">
+        <img class="outImage" type="image" src="{% static 'apiApp/images/tagButton.png' %}" onclick="getLocation()"> 
+    </div>
+     <form id="outForm" action="/api/" method="post">{% csrf_token %}
+        <input id="latlon" name="position" type="text" value="unchanged" style="width: 0; height: 0; padding:0; margin:0;visibility: hidden"></input>
+      </form>
+    {%endif%}
+  {% endif %}
+
+   <a class="marginNote" href="/account/logout/?next=/api">Log out</a>
+
+   <script>
+        var form = document.getElementById("outForm");
+        console.log("Starting:")
+        console.log(form)
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(setPosition, showError);
+            } else {
+                alert("No support for geolocation on this browser")
+            }
+        }
+              
+
+        function setPosition(position) {
+          console.log("Working with:");
+          var latlon = position.coords.latitude + "," + position.coords.longitude;
+          console.log(latlon)
+          document.getElementById("latlon").value=latlon;
+          var r = confirm("Are you really out?");
+          if (r == true) {
+              form.submit()
+          } 
+          
+        }
+
+
+
+        function showError(error) {
+          console.log("Broke")
+          switch(error.code) {
+              case error.PERMISSION_DENIED:
+                  console.log("User denied the request for Geolocation.")
+                  break;
+              case error.POSITION_UNAVAILABLE:
+                  console.log("Location information is unavailable.")
+                  break;
+              case error.TIMEOUT:
+                  console.log("The request to get user location timed out.")
+                  break;
+              case error.UNKNOWN_ERROR:
+                  console.log("An unknown error occurred.")
+                  break;
+          }
+      }
+    </script>
+    <script type="text/javascript">
+      // Load google charts
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+        var c1 = parseInt(document.getElementById("uc1").value)
+        var c2 = parseInt(document.getElementById("uc2").value)
+        var c3 = parseInt(document.getElementById("uc3").value)
+        var c4 = parseInt(document.getElementById("uc4").value)
+
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Class', 'Number of Your Tags'],
+        ['Freshmen', c1],
+        ['Sophomores', c2],
+        ['Juniors', c3],
+        ['Seniors', c4],
+      ]);
+     
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'Your Tags', 'width':900, 'height':600, colors: ["#9589C6","#887CB0","#71678B", "#584F67"], "backgroundColor": '#E7E9EF', "fontSize": 24};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      // Load google charts
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+        var c1 = parseInt(document.getElementById("c1o").value)
+        var c2 = parseInt(document.getElementById("c2o").value)
+        var c3 = parseInt(document.getElementById("c3o").value)
+        var c4 = parseInt(document.getElementById("c4o").value)
+
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Class', 'Number of Your Tags'],
+        ['Freshmen', c1],
+        ['Sophomores', c2],
+        ['Juniors', c3],
+        ['Seniors', c4],
+      ]);
+
+     
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'Players Out:', 'width':900, 'height':600, colors: ["#9589C6","#887CB0","#71678B", "#584F67"], "backgroundColor": '#E7E9EF', "fontSize": 24};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data, options);
+      }
+    </script>
   </body>
 </html>
+{% endblock content %}

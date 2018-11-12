@@ -9,6 +9,7 @@ urlpatterns = [
 	url(r"^tag/(?P<tagger_id>[0-9]+)/$", views.tagPlayer, name="tagPlayer"),
 	url(r"^get-recent/$", views.getRecent, name="getRecent"),
 	url(r"^out-rel/$", views.getClassTags, name="getClassTags"),
-	
+	url(r"^tester/$", views.credentialTester, name="credentialTester"),
+    url(r'^account/logout/$', views.Logout),
 ]
 

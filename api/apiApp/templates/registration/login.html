@@ -1,0 +1,43 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Gotcha</title>
+    <!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=font1|font2|etc" type="text/css"> -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'apiApp/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'apiApp/skeleton.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'apiApp/style.css' + ?v=1.1.1' %}">
+
+<!-- 
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet"> -->
+    <link rel="icon" 
+      type="image/png" 
+      href="{% static 'apiApp/images/favicon.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'apiApp/images/favicon.png' %}" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script src="{% static 'apiApp/sly.js' %}"></script>
+    <script src="{% static 'apiApp/index.js' %}"></script>
+
+
+  </head>
+  <body style="height:100%">
+      <div class="header" style="text-align:center" id="loginHeader">
+        <h1 id="loginTitle">Gotcha Login</h1>
+        <br>
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
+
+        <div class="outButton" id="loginArea">
+         <img class="outImage" id="login" src="{% static 'apiApp/images/login.png' %}" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
+        </div>
+
+        </a>
+        <br>
+      </div>
+  </body>
+</html>
+{% endblock %}

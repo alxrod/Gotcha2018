@@ -12,6 +12,10 @@ body {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+#loginHeader {
+	height:30vh;
+}
+
 .targetImg {
 	bottom: 0;
 	position: absolute;
@@ -32,14 +36,26 @@ h1 {
 	color: #475C7A;
 	font-size: 60px;
 	font-family: 'Noto Sans', sans-serif;
+	margin-bottom: 0px;
+}
+
+#instruction {
+	color: #475C7A;
+	font-size: 32px;
+	font-family: 'Noto Sans', sans-serif;
 }
 
 .mainWidget {
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-top: 20px;
+	display:inline-block;
+	margin-left: 10vw;
+	margin-right: 80vw;
+	width: 80vw;
+	margin-bottom: 20px;
 	/*border: solid 5px red;*/
 	border-radius: 20px 20px 20px 20px;
-	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
 	
 }
 
@@ -77,15 +93,43 @@ h1 {
 	margin-top: 50px;
 	list-style-type: none;
 	width: 90%;
+	height: 500px;
 	padding: 1px;
+	overflow: scroll;
 	padding-left: 10px;
-	padding-right: 1-px;
+	padding-right: 1px;
 	/*border: solid 5px green;*/
 
 
 
 }
 
+#widgetFrame {
+	overflow-y: hidden;
+	overflow-x: hidden;
+	/*height: 800px;*/
+	/*width: 400%;*/
+	/*display: inl;*/
+}
+
+.widgetUl {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.widgetLi {
+	float: left;
+	margin: 0 1px 0 0;
+	padding: 0;
+}
+
+#widgetSlide {
+	white-space: nowrap;
+}
+
+}
 .leaderboardEntry {
 	margin:0px;
 	padding: 0px;
@@ -105,7 +149,9 @@ h1 {
 	white-space: nowrap;
 	margin: 0;
 	margin-left: -6px;
-	padding: 1px;
+	margin-bottom: -15px;
+
+	padding: 0px;
 	padding-left: 5px;
 	text-align: center;
 	border: solid 1.5px #475C7A;
@@ -142,6 +188,7 @@ h1 {
 .outButton {
 	margin: auto;
 	margin-top: 50px;
+	margin-bottom: 10px;
 	background-color: #685D79;
 	border-radius: 100%;
 	width: 210px;
@@ -150,9 +197,40 @@ h1 {
 
 }
 
-.outForm {
+#login {
+	width: 128px;
+	height: 128px;
+	margin-top: 40px;
+	margin-left: 10px;
+}
 
+#loginArea{
+	margin-top: 30vh;
+}
 
+#loginTitle {
+	padding-top: 200px;
+	font-size:128px;
+	color: #FCBB6D;
+}
+
+#mapDisplay {
+	margin-top: 50px;
+}
+
+.marginNote {
+	text-decoration: none;
+	font-size: 24px;
+	color: #475C7A;
+	padding: 10px;
+	border-radius:10px;
+	border: solid 1px #475C7A;
+}
+
+.marginNote:hover {
+	text-decoration: none;
+	color: #FCBB6D;
+	border: solid 1px #FCBB6D;
 }
 
 .outImage {
@@ -162,4 +240,23 @@ h1 {
 	height: 148px;
 }
 
+#piechart {
+	background-color: #E7E9EF ;
+}
+
+.rulesBody {
+	height:95%;
+	padding-top:10px;
+	color: #475C7A;
+	line-height: 1.2;
+	overflow: scroll;
+	font-size: 36px;
+	text-align: left;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+.rulesBody ul {
+	margin-top: 0px;
+}
 
